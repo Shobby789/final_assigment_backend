@@ -13,12 +13,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/uploads", express.static("uploads"));
 router.use(express.static(__dirname + "./public/"));
 
-require("../models/db/itemImages");
-const ItemImages = mongoose.model("Item_Images");
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./public/uploads/");
+    cb(null, "./uploads/");
   },
   filename: function (req, file, cb) {
     return cb(null, Date.now() + "-" + file.originalname);

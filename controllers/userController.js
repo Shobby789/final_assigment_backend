@@ -47,3 +47,13 @@ module.exports.loginUser = async (req, res) => {
   }
   res.json({ success: false, error: "InvAlid Password" });
 };
+
+module.exports.getAllUsers = async (res, req) => {
+  try {
+    const allUsers = await User.find({});
+    res.send({ status: "ok", data: allUsers });
+  } catch (error) {
+    console.log(error.message);
+    res.send("Server error");
+  }
+};
